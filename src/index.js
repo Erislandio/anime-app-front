@@ -1,8 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import Main from './components/main'
 import * as serviceWorker from './serviceWorker';
+import Login from './components/login/login'
+
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
+
+
+function App() {
+    return (
+        <Router>
+            <Switch>
+                <Route path="/login">
+                    <Login />
+                </Route>
+                <Route path="/">
+                    <Main />
+                </Route>
+            </Switch>
+        </Router>
+    )
+}
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
