@@ -4,12 +4,12 @@ import './index.css';
 import Main from './components/main'
 import * as serviceWorker from './serviceWorker';
 import Login from './components/login/login'
+import LoginForm from './components/login/LoginForm';
 
 import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
 } from "react-router-dom";
 
 
@@ -17,11 +17,11 @@ function App() {
     return (
         <Router>
             <Switch>
-                <Route path="/login">
+                <Route path="/initial">
                     <Login />
                 </Route>
-                <Route path="/">
-                    <Main />
+                <Route path="/login">
+                    <LoginForm />
                 </Route>
             </Switch>
         </Router>

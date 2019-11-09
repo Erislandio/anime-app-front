@@ -1,66 +1,30 @@
-import React, { Component } from 'react';
-import './login.css';
+import React, { Component } from "react";
+import "./login.css";
+import { Logo } from "../../assets/svg/icons";
+import { Link } from "react-router-dom";
 
 class Login extends Component {
-	render() {
-		return (
-			<div id="login" className="login-page">
-				<div>
-					<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 64 64">
-						<g data-name="Filled outline">
-							<path fill="#aabece" d="M52 30L12 30 12 13 19 9 45 9 52 13 52 30z" />
-							<path fill="#394d5c" d="M40 18L24 18 25 3 39 3 40 18z" />
-							<circle cx="32" cy="6" r="3" fill="#f4f4e6" />
-							<path fill="#b5554e" d="M12 37L22 39 32 37 42 39 52 37 52 30 12 30 12 37z" />
-							<path fill="#2d75bb" d="M12 18H52V30H12z" />
-							<path fill="#ffd782" d="M28 34L23 35 18 34 16 30 30 30 28 34z" />
-							<path fill="#ffd782" d="M46 34L41 35 36 34 34 30 48 30 46 34z" />
-							<path fill="#f4f4e6" d="M22 39L22 53 28 57 29 61 35 61 36 57 42 53 42 39 32 37 22 39z" />
-							<path fill="#394d5c" d="M35 61L29 61 28 57 29 50 32 49 35 50 36 57 35 61z" />
-							<path
-								fill="#394d5c"
-								d="M36.804 42.98L32 42.02 27.196 42.98 26.804 41.02 32 39.98 37.196 41.02 36.804 42.98z"
-							/>
-							<path
-								fill="#394d5c"
-								d="M36.804 46.98L32 46.02 27.196 46.98 26.804 45.02 32 43.98 37.196 45.02 36.804 46.98z"
-							/>
-							<path fill="#dd3e46" d="M22 58L18 59 18 38.111 22 39 22 58z" />
-							<path fill="#7d8d9c" d="M18 59L12 61 12 37 18 38.111 18 59z" />
-							<path fill="#f4f4e6" d="M37 24L32 26 27 24 28 13 36 13 37 24z" />
-							<path fill="#aabece" d="M12 55L4 55 4 27 12 23 12 55z" />
-							<path fill="#394d5c" d="M8 31H12V35H8z" />
-							<path fill="#394d5c" d="M8 39H12V43H8z" />
-							<path fill="#394d5c" d="M8 47H12V51H8z" />
-							<path fill="#dd3e46" d="M42 58L46 59 46 38.111 42 39 42 58z" />
-							<path fill="#7d8d9c" d="M46 59L52 61 52 37 46 38.111 46 59z" />
-							<path fill="#aabece" d="M52 55L60 55 60 27 52 23 52 55z" />
-							<path fill="#394d5c" d="M52 31H56V35H52z" transform="rotate(-180 54 33)" />
-							<path fill="#394d5c" d="M52 39H56V43H52z" transform="rotate(-180 54 41)" />
-							<path fill="#394d5c" d="M52 47H56V51H52z" transform="rotate(-180 54 49)" />
-							<path fill="#dd3e46" d="M37 24L61 3 36 13 37 24z" />
-							<path fill="#dd3e46" d="M27 24L3 3 28 13 27 24z" />
-							<path fill="#ffd782" d="M27 24L32 26 37 24 36.455 18 32 20 27.545 18 27 24z" />
-							<circle cx="18" cy="24" r="2" fill="#f4f4e6" />
-							<circle cx="46" cy="24" r="2" fill="#f4f4e6" />
-							<path d="M26.804 41.02L27.196 42.98 32 42.02 36.804 42.98 37.196 41.02 32 39.98 26.804 41.02z" />
-							<path d="M26.804 45.02L27.196 46.98 32 46.02 36.804 46.98 37.196 45.02 32 43.98 26.804 45.02z" />
-							<path d="M60.629 2.071l-15.14 6.056L45.271 8h-4.936L40 2.934A1 1 0 0039 2H25a1 1 0 00-1 .934L23.665 8h-4.936l-.218.127-15.14-6.056a1 1 0 00-1.029 1.682l9.412 8.236-.754.431v9.962l-8 4V56h8v5a1 1 0 001 1 .983.983 0 00.316-.052l5.965-1.988 3.961-.99A1 1 0 0023 58v-3.132l4.123 2.749L28.219 62h7.562l1.1-4.383L41 54.868V58a1 1 0 00.758.97l3.961.99 5.965 1.988A.983.983 0 0052 62a1 1 0 001-1v-5h8V26.382l-8-4V12.42l-.754-.431 9.412-8.236a1 1 0 00-1.029-1.682zM34 6a2 2 0 11-2-2 2 2 0 012 2zm-5.444-2A3.959 3.959 0 0028 6a4 4 0 008 0 3.959 3.959 0 00-.556-2h2.62l.46 6.913L35.807 12h-7.614l-2.717-1.087.46-6.913zm6.531 10l.307 3.38L32 18.9l-3.394-1.52.307-3.38zm-6.672 5.486l3.176 1.426a1 1 0 00.818 0l3.176-1.426.351 3.863L32 24.923l-3.936-1.574zm-1.479-5.835l-.754 8.3L8.064 6.1zM13 13.58l.347-.2L17.481 17H13zM5 54V27.618l6-3V30H7v6h4v2H7v6h4v2H7v6h4v2zm12.324-19.115L23 36.02l5.676-1.135L30.618 31h2.764l1.942 3.885L41 36.02l5.676-1.135L48.618 31H51v5.168l-5.182.96-.035.007-3.8.843L32 35.98l-9.988 2-3.8-.843-.035-.007L13 36.168V31h2.382zM17.618 31h10.764l-1.058 2.115L23 33.98l-4.324-.865zm18 0h10.764l-1.058 2.115L41 33.98l-4.324-.865zM53 32h2v2h-2zm0 8h2v2h-2zm-42-6H9v-2h2zm0 8H9v-2h2zm0 8H9v-2h2zm2-11.781l4 .8v19.26l-4 1.333zm8 19l-2 .5v-18.3l2 .4zM29.781 60l-.763-3.053.884-6.194 2.1-.7 2.1.7.884 6.194L34.219 60zm6.985-4.712l-.866-6.041-3.9-1.3-3.9 1.3-.864 6.041L23 52.465V39.82l9-1.8 9 1.8v12.645zM43 39.82l2-.4v18.3l-2-.5zm8 19.792l-4-1.333v-19.26l4-.8zM53 48h2v2h-2zm6-20.382V54h-6v-2h4v-6h-4v-2h4v-6h-4v-2h4v-6h-4v-5.382zM51 29H13V19h6.767l6.575 5.753h.005a.986.986 0 00.282.173l5 2a1 1 0 00.742 0l5-2a.986.986 0 00.282-.173h.005L44.233 19H51zm0-15.42V17h-4.481l4.134-3.618zm-13.182 8.375l-.754-8.3L55.936 6.1z" />
-							<path d="M18 21a3 3 0 103 3 3 3 0 00-3-3zm0 4a1 1 0 111-1 1 1 0 01-1 1zM46 21a3 3 0 103 3 3 3 0 00-3-3zm0 4a1 1 0 111-1 1 1 0 01-1 1z" />
-						</g>
-					</svg>
-					<h2>Anime App</h2>
-				</div>
-				<div className="form-content">
-					<p>Um app feito para voce!</p>
-					<form>
-						<button id="login-btn">Entrar</button>
-						<button id="sign-up-btn">Crie sua conta</button>
-					</form>
-				</div>
-			</div>
-		);
-	}
+  render() {
+    return (
+      <div id="login" className="login-page">
+        <div>
+          <Logo />
+          <h2>Anime App</h2>
+        </div>
+        <div className="form-content">
+          <p>Um app feito para voce!</p>
+          <form>
+            <button id="login-btn">
+              <Link to="/login">Entrar</Link>
+            </button>
+            <button id="sign-up-btn">
+              <Link to="/signin">Crie sua conta :-)</Link>
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Login;
