@@ -4,8 +4,10 @@ import { IoIosArrowRoundBack, IoIosArrowForward } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { Loading } from "../loading/loading";
 import client from "../../client/client";
+import { withRouter } from "react-router-dom";
+import Cookie from "js-cookie";
 
-export default class LoginForm extends Component {
+class LoginForm extends Component {
   constructor(props) {
     super(props);
 
@@ -24,6 +26,7 @@ export default class LoginForm extends Component {
   };
 
   handleSubmitForm = e => {
+    const { history } = this.props;
     const { email, password } = this.state;
     e.preventDefault();
     this.setState({ loading: true });
@@ -37,9 +40,18 @@ export default class LoginForm extends Component {
       }
     })
       .then(res => {
-        const { data, status } = res;
+        const {
+          data: { token },
+          status
+        } = res;
 
         if (status === 200) {
+          Cookie.set("id", token);
+
+          history.push("/dashboard");
+          this.setState({
+            loading: false
+          });
         }
       })
       .catch(error => {
@@ -52,7 +64,6 @@ export default class LoginForm extends Component {
 
   render() {
     const { email, password, loading, error } = this.state;
-    console.log(this);
 
     return (
       <div id="login-form" className="login-page form-login">
@@ -106,3 +117,5 @@ export default class LoginForm extends Component {
     );
   }
 }
+
+export default withRouter(LoginForm);
