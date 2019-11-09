@@ -7,6 +7,8 @@ import client from "../../client/client";
 import { withRouter } from "react-router-dom";
 import Cookie from "js-cookie";
 import { compose } from "redux";
+import { checkMail } from "../../utils/emailVaidator";
+
 import {
   ToastsContainer,
   ToastsStore,
@@ -35,6 +37,12 @@ class LoginForm extends Component {
     const { history } = this.props;
     const { email, password } = this.state;
     e.preventDefault();
+
+    if (!checkMail(email)) {
+      ToastsStore.warning("Email Inválido");
+      return;
+    }
+
     this.setState({ loading: true });
 
     client({
