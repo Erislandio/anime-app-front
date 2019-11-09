@@ -6,6 +6,12 @@ import { Loading } from "../loading/loading";
 import client from "../../client/client";
 import { withRouter } from "react-router-dom";
 import Cookie from "js-cookie";
+import { compose } from "redux";
+import {
+  ToastsContainer,
+  ToastsStore,
+  ToastsContainerPosition
+} from "react-toasts";
 
 class LoginForm extends Component {
   constructor(props) {
@@ -42,19 +48,23 @@ class LoginForm extends Component {
       .then(res => {
         const {
           data: { token },
+          data,
           status
         } = res;
 
-        if (status === 200) {
+        if (token) {
           Cookie.set("id", token);
-
           history.push("/dashboard");
-          this.setState({
-            loading: false
-          });
+        } else if (data.error) {
+          ToastsStore.error(data.error);
         }
+
+        this.setState({
+          loading: false
+        });
       })
       .catch(error => {
+        ToastsStore.error("Ops! ocorreu algum erro, tente novamente.");
         this.setState({
           error,
           loading: false
@@ -67,6 +77,10 @@ class LoginForm extends Component {
 
     return (
       <div id="login-form" className="login-page form-login">
+        <ToastsContainer
+          store={ToastsStore}
+          position={ToastsContainerPosition.TOP_RIGHT}
+        />
         <Link to="/initial" className="back-btn">
           <IoIosArrowRoundBack size={50} color="#fff" />
         </Link>
@@ -118,4 +132,6 @@ class LoginForm extends Component {
   }
 }
 
-export default withRouter(LoginForm);
+const encharge = compose(withRouter)(LoginForm);
+
+export default encharge;
