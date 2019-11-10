@@ -103,7 +103,7 @@ class LoginForm extends Component {
               <span className="label-input">
                 <input
                   value={email}
-                  placeholder="Email"
+                  placeholder="E-mail"
                   name="email"
                   type="text"
                   autoComplete="false"
