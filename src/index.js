@@ -6,10 +6,25 @@ import * as serviceWorker from "./serviceWorker";
 import Login from "./components/login/login";
 import LoginForm from "./components/login/LoginForm";
 import Register from "./components/register/Register";
+import Cookie from "js-cookie";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+  useHistory,
+  useLocation
+} from "react-router-dom";
 
 function App() {
+  const idUser = Cookie.get("id");
+
+  console.log(idUser);
+
+  let history = useHistory();
+  let location = useLocation();
+
   return (
     <Router>
       <Switch>
