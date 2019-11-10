@@ -183,7 +183,6 @@ class Register extends Component {
       theposition
     } = this.state;
 
-    console.log(this);
 
     const disabledButton =
       !email || !password || !confirmPass || !name || !birth || !tel || !zipcode
