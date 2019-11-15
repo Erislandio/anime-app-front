@@ -6,7 +6,6 @@ export default class Search extends Component {
     return (
       <div id="search">
         <h1>Search</h1>
-        <BottomNavigator />
       </div>
     );
   }

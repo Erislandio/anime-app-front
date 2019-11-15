@@ -107,14 +107,15 @@ class Register extends Component {
           })
             .then(res => {
               const {
-                data: { token },
+                data: { token, user: { _id} },
                 data,
                 status
               } = res;
 
               if (token) {
                 Cookie.set("id", token);
-                history.push("/dashboard");
+                Cookie.set("iuser", _id);
+                history.push("/home");
               } else if (data.error) {
                 ToastsStore.error(data.error);
               }

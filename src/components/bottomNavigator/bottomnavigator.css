@@ -23,4 +23,11 @@
 }
 #bottom-navigator ul li {
   list-style: none;
+  opacity: 0.5;
 }
+
+#bottom-navigator ul li.active{
+  opacity: 1;
+}
+
+

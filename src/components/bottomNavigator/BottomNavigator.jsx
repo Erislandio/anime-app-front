@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   IoIosHome,
@@ -9,6 +9,8 @@ import {
 import "./bottomnavigator.css";
 
 function BottomNavigator(props) {
+  const [active, setActive] = useState(1);
+
   const menuOptions = [
     {
       id: 1,
@@ -37,7 +39,11 @@ function BottomNavigator(props) {
       <ul>
         {menuOptions.map(option => {
           return (
-            <li key={option.id}>
+            <li
+              key={option.id}
+              onClick={e => setActive(option.id)}
+              className={`${option.id === active ? " active " : ""}`}
+            >
               <Link to={option.url}>{option.icon}</Link>
             </li>
           );

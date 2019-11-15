@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
@@ -16,17 +16,40 @@ import {
 import Search from "./components/dashboard/search/Search";
 import { Home } from "./components/dashboard/home/Home";
 import Profile from "./components/dashboard/profile/Profile";
+import BottomNavigator from "./components/bottomNavigator/BottomNavigator";
+import client from "./client/client";
 
 function App() {
   const idUser = Cookie.get("id");
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const user = Cookie.get("user");
+    if (idUser) {
+      try {
+        client({
+          method: "POST",
+          url: "/user/find",
+          data: {
+            id: user
+          },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${idUser}`
+          }
+        }).then(res => {
+          setUser(res.data);
+        });
+      } catch (error) {}
+    }
+  }, []);
 
   return (
     <Router>
       {idUser ? (
         <Redirect to={{ pathname: "/home" }} />
       ) : (
-        <Redirect to={{ pathname: "/initial" 
-      }} />
+        <Redirect to={{ pathname: "/initial" }} />
       )}
       <Switch>
         <Route path="/initial">
@@ -45,9 +68,10 @@ function App() {
           <Home />
         </Route>
         <Route path="/profile">
-          <Profile />
+          <Profile user={user} />
         </Route>
       </Switch>
+      {idUser ? <BottomNavigator /> : null}
     </Router>
   );
 }
