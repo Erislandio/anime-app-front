@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import Main from "./components/dashboard/Main";
 import * as serviceWorker from "./serviceWorker";
 import Login from "./components/login/login";
 import LoginForm from "./components/login/LoginForm";
@@ -14,13 +13,21 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
+import Search from "./components/dashboard/search/Search";
+import { Home } from "./components/dashboard/home/Home";
+import Profile from "./components/dashboard/profile/Profile";
 
 function App() {
   const idUser = Cookie.get("id");
 
   return (
     <Router>
-      {idUser && <Redirect to={{ pathname: "/dashboard" }} />}
+      {idUser ? (
+        <Redirect to={{ pathname: "/home" }} />
+      ) : (
+        <Redirect to={{ pathname: "/initial" 
+      }} />
+      )}
       <Switch>
         <Route path="/initial">
           <Login />
@@ -31,8 +38,14 @@ function App() {
         <Route path="/register">
           <Register />
         </Route>
-        <Route path="/dashboard">
-          <Main />
+        <Route path="/search">
+          <Search />
+        </Route>
+        <Route path="/home">
+          <Home />
+        </Route>
+        <Route path="/profile">
+          <Profile />
         </Route>
       </Switch>
     </Router>
