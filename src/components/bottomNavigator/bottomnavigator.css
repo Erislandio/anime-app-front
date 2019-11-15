@@ -1,0 +1,26 @@
+#bottom-navigator {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  background: #fff;
+  display: block;
+
+  -webkit-box-shadow: 2px -4px 22px -14px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 2px -4px 22px -14px rgba(0, 0, 0, 0.75);
+  box-shadow: 2px -4px 22px -14px rgba(0, 0, 0, 0.75);
+
+  border-top: 1px solid #dedede;
+
+    opacity: 0.8;
+}
+
+#bottom-navigator ul {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  align-items: center;
+}
+#bottom-navigator ul li {
+  list-style: none;
+}
