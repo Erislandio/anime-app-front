@@ -24,14 +24,14 @@ function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const user = Cookie.get("user");
-    if (idUser) {
+    const userId = Cookie.get("user");
+    if (idUser && user == null) {
       try {
         client({
           method: "POST",
           url: "/user/find",
           data: {
-            id: user
+            id: userId
           },
           headers: {
             "Content-Type": "application/json",
@@ -43,6 +43,8 @@ function App() {
       } catch (error) {}
     }
   }, []);
+
+  console.log(user)
 
   return (
     <Router>
@@ -71,7 +73,7 @@ function App() {
           <Profile user={user} />
         </Route>
       </Switch>
-      {idUser ? <BottomNavigator /> : null}
+      <BottomNavigator />
     </Router>
   );
 }

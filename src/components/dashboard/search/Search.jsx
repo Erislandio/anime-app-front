@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import BottomNavigator from "../../bottomNavigator/BottomNavigator";
 
 export default class Search extends Component {
   render() {
