@@ -65,8 +65,7 @@ class LoginForm extends Component {
         if (token) {
           Cookie.set("user", _id);
           Cookie.set("id", token);
-
-          history.push("/home");
+          window.location.href = "/home";
         } else if (data.error) {
           ToastsStore.error(data.error);
         }

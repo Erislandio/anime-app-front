@@ -1,12 +1,16 @@
 import React, { Component } from "react";
 import Cookie from "js-cookie";
+import Header from "./Header/Header";
+import "./profile.css";
+import axios from "axios";
 
 export default class Profile extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      user: null
+      user: null,
+      address: null
     };
   }
 
@@ -16,17 +20,19 @@ export default class Profile extends Component {
       Cookie.remove("user");
 
       window.location.href = "/initial";
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   render() {
+    const { user } = this.props;
+
+    if (!user) {
+      return <h1>carregando...</h1>;
+    }
 
     return (
       <div id="profile">
-        <h1>{this.props.user && this.props.user.name}</h1>
-        <button onClick={this.handleLogout}>Sair</button>
+        <Header user={user} />
       </div>
     );
   }

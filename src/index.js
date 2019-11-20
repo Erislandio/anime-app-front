@@ -6,7 +6,7 @@ import Login from "./components/login/login";
 import LoginForm from "./components/login/LoginForm";
 import Register from "./components/register/Register";
 import Cookie from "js-cookie";
-
+import axios from 'axios'
 import {
   BrowserRouter as Router,
   Switch,
@@ -40,11 +40,29 @@ function App() {
         }).then(res => {
           setUser(res.data);
         });
-      } catch (error) {}
+      } catch (error) {
+        client({
+          method: "POST",
+          url: "/user/find",
+          data: {
+            id: userId
+          },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${idUser}`
+          }
+        }).then(res => {
+          setUser(res.data);
+
+          axios
+            .get(`https://viacep.com.br/ws/${res.data.user.zipcode}/json/`)
+            .then(res => {
+              console.log(res);
+            });
+        });
+      }
     }
   }, []);
-
-  console.log(user)
 
   return (
     <Router>
@@ -73,7 +91,7 @@ function App() {
           <Profile user={user} />
         </Route>
       </Switch>
-      <BottomNavigator />
+      {user || idUser ? <BottomNavigator /> : null}
     </Router>
   );
 }
