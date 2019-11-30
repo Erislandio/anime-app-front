@@ -60,7 +60,7 @@ export default class Search extends Component {
   render() {
     const { open, search, loadingData, init, text } = this.state;
 
-    console.log(this.state);
+    console.log(this);
 
     return (
       <div id="search">
@@ -73,6 +73,7 @@ export default class Search extends Component {
                 type="text"
                 placeholder="Animes, Mangas e Cinemas..."
                 onChange={this.handleChange}
+                autoFocus
               />
             </span>
             <div id="search-filter">
@@ -92,12 +93,15 @@ export default class Search extends Component {
             </div>
           ) : null}
           <FilterContainer open={open} onClose={this.onClose} />
-          <main id={search && !loadingData && "result-list"}>
+          <main id={search && !loadingData ? "result-list" : "not-result-list"}>
             {search && !loadingData ? (
               search.map(anime => {
                 return (
                   <div className="spot-search" key={anime.title}>
-                    <Link>
+                    <Link
+                      to={{ pathname: `details/${anime.mal_id}` }}
+                      params={{ anime }}
+                    >
                       <img
                         src={anime.image_url}
                         alt={anime.title}

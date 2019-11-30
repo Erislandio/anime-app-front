@@ -16,6 +16,7 @@ import Search from "./components/dashboard/search/Search";
 import { Home } from "./components/dashboard/home/Home";
 import Profile from "./components/dashboard/profile/Profile";
 import BottomNavigator from "./components/bottomNavigator/BottomNavigator";
+import Details from "./components/Details/Details";
 
 export class App extends React.Component {
   render() {
@@ -45,6 +46,9 @@ export class App extends React.Component {
           </Route>
           <Route path="/profile">
             <Profile user={user} />
+          </Route>
+          <Route path="/details/:id">
+            <Details />
           </Route>
         </Switch>
         {user ? <BottomNavigator /> : null}
