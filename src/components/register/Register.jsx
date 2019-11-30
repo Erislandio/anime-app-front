@@ -107,14 +107,14 @@ class Register extends Component {
           })
             .then(res => {
               const {
-                data: { token, user: { _id} },
+                data: { token, user },
                 data,
                 status
               } = res;
 
               if (token) {
                 Cookie.set("id", token);
-                Cookie.set("iuser", _id);
+                Cookie.set("user", user);
                 history.push("/home");
               } else if (data.error) {
                 ToastsStore.error(data.error);
@@ -183,7 +183,6 @@ class Register extends Component {
       confirmPass,
       theposition
     } = this.state;
-
 
     const disabledButton =
       !email || !password || !confirmPass || !name || !birth || !tel || !zipcode

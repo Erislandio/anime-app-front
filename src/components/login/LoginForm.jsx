@@ -55,16 +55,12 @@ class LoginForm extends Component {
     })
       .then(res => {
         const {
-          data: {
-            token,
-            user: { _id }
-          },
+          data: { token, user },
           data
         } = res;
 
         if (token) {
-          Cookie.set("user", _id);
-          Cookie.set("id", token);
+          Cookie.set("user", user);
           window.location.href = "/home";
         } else if (data.error) {
           ToastsStore.error(data.error);
