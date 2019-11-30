@@ -3,7 +3,10 @@ import { IoIosSearch, IoIosOptions } from "react-icons/io";
 import "./search.css";
 import { FilterContainer } from "./FilterContainer";
 import client from "../../../client/client";
-import { AiOutlineLike } from "react-icons/ai";
+import { MdDoNotDisturb } from "react-icons/md";
+import Loader from "react-loader-spinner";
+import { Link } from "react-router-dom";
+
 export default class Search extends Component {
   constructor(props) {
     super(props);
@@ -32,16 +35,22 @@ export default class Search extends Component {
     if (this.timeout) clearTimeout(this.timeout);
 
     setTimeout(() => {
+      this.setState({ loadingData: true });
       client
         .jinkanApi({
           url: `/search/anime?q=${searchText}&limit=15`
         })
         .then(res => {
-          this.setState({
-            search: res.data.results
-          });
+          this.setState(
+            {
+              search: res.data.results
+            },
+            () => {
+              this.setState({ loadingData: false });
+            }
+          );
         });
-    }, 1000);
+    }, 500);
 
     if (searchText === "") {
       this.setState({ init: false, text: searchText });
@@ -51,7 +60,7 @@ export default class Search extends Component {
   render() {
     const { open, search, loadingData, init, text } = this.state;
 
-    console.log(search);
+    console.log(this.state);
 
     return (
       <div id="search">
@@ -83,32 +92,49 @@ export default class Search extends Component {
             </div>
           ) : null}
           <FilterContainer open={open} onClose={this.onClose} />
-          <main id="result-list">
-            {search &&
+          <main id={search && !loadingData && "result-list"}>
+            {search && !loadingData ? (
               search.map(anime => {
                 return (
                   <div className="spot-search" key={anime.title}>
-                    <img
-                      src={anime.image_url}
-                      alt={anime.title}
-                      width="150px"
-                      height="200px"
-                    />
-                    <div className="card-info">
-                      <h4>{anime.title}</h4>
-                      <div className="card-actions">
-                        <button>info</button>
-                        <button>
-                          <AiOutlineLike color="#fff" />
-                        </button>
+                    <Link>
+                      <img
+                        src={anime.image_url}
+                        alt={anime.title}
+                        width="170px"
+                        height="200px"
+                      />
+                      <div className="card-info">
+                        <h4>{anime.title}</h4>
+                        <div className="card-details">
+                          <h4>
+                            {anime.episodes}{" "}
+                            {anime.episodes > 1 ? "Episódios" : "Episódio"}
+                          </h4>
+                        </div>
                       </div>
-                    </div>
+                    </Link>
                   </div>
                 );
-              })}
-            {init && search.length === 0 ? <h2>Sem resultados...</h2> : null}
+              })
+            ) : (
+              <div id="loading">
+                <Loader
+                  type="TailSpin"
+                  color="#f953c6"
+                  height={50}
+                  width={50}
+                />
+              </div>
+            )}
           </main>
         </div>
+        {init && search.length === 0 ? (
+          <div id="not-results">
+            <MdDoNotDisturb size={100} color="#f953c6" />
+            <h4>Sem resultados para a pesquisa: {text}</h4>
+          </div>
+        ) : null}
       </div>
     );
   }

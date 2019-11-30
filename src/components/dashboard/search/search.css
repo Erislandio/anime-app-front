@@ -1,5 +1,5 @@
 #search {
-  padding: 20px;
+  padding: 20px 10px;
 }
 
 #search input {
@@ -43,7 +43,7 @@
 }
 
 .btn-filter {
-  padding: 10px 0px 10px 10px;
+  padding: 10px;
   background: transparent;
   border: none;
   outline: none;
@@ -162,11 +162,24 @@
 
 #result-list .spot-search {
   display: flex;
+  overflow: hidden;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin: 20px 0px;
   border: 1px solid #dedede;
-  padding: 10px;
-  border-radius: 12px;
+  flex-direction: column;
+  border-radius: 4px;
+  -webkit-box-shadow: 10px 28px 20px -24px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 28px 20px -24px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 28px 20px -24px rgba(0, 0, 0, 0.75);
+}
+
+#result-list .card-info .card-details {
+  margin-top: 5px;
+}
+
+#result-list  a {
+  text-decoration: none;
+  color: #34495e;
 }
 
 #result-list .card-info {
@@ -175,14 +188,20 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  margin-left: 20px;
+  font-size: 14px;
+  padding: 10px;
 }
 
 #result-list {
   display: grid;
-  margin-top: 30px;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
+  margin-top: 15px;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  padding-bottom: 100px;
+}
+
+#result-list img {
+  margin: 0 auto;
 }
 
 #result-list .card-info .card-actions {
@@ -198,10 +217,22 @@
   margin-top: 10px;
   border: 0px;
   padding: 10px;
-  border-radius: 15px;
+  border-radius: 8px;
   background: #2980b9;
 }
 
 #result-list .card-info .card-actions button:last-of-type {
   background: #27ae60;
+}
+
+#not-results {
+  min-height: 30vh;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 300px;
+  margin: 0 auto;
+  text-align: center;
+  justify-content: space-around;
 }
