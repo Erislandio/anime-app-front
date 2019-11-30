@@ -22,7 +22,6 @@ import client from "./client/client";
 function App() {
   const idUser = Cookie.get("id");
   const [user, setUser] = useState(null);
-
   useEffect(() => {
     const userId = Cookie.get("user");
     if (idUser && user == null) {
@@ -57,7 +56,7 @@ function App() {
           axios
             .get(`https://viacep.com.br/ws/${res.data.user.zipcode}/json/`)
             .then(res => {
-              console.log(res);
+              console.log(res, 'res');
             });
         });
       }

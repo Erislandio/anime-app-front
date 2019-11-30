@@ -1,0 +1,148 @@
+#search {
+  padding: 20px;
+}
+
+#search input {
+  width: 100%;
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid #dedede;
+  outline: none;
+  padding-left: 40px;
+  font-size: 18px;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.input-container span {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.input-container span #icon-search {
+  position: absolute;
+  left: 10px;
+}
+
+.btn-filter {
+  padding: 10px 0px 10px 10px;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.input-container input::-webkit-input-placeholder {
+  color: #f953c6;
+  font-weight: bold;
+}
+
+.input-container input:-ms-input-placeholder {
+  color: #f953c6;
+  font-weight: bold;
+}
+
+.input-container input::placeholder {
+  color: #f953c6;
+  font-weight: bold;
+}
+
+/* ! filter */
+
+#filter-container > div {
+  position: fixed;
+  background: #fff;
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  bottom: -100%;
+  z-index: 10000;
+  transition: all 0.2s ease-in-out;
+}
+
+#filter-container ul li {
+  list-style: none;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid #2c3e50;
+  font-size: 18px;
+  opacity: 0.8;
+}
+
+#filter-container .filter-content-top {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+#filter-container .filter-content-top span {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+
+  align-items: flex-start;
+}
+
+#filter-container ul {
+  margin-top: 100px;
+  border-top: 1px solid #f953c6;
+}
+
+#filter-container .filter-content-top span h2 {
+  font-size: 30px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  opacity: 0.9;
+  color: #2c3e50;
+}
+
+#filter-container .filter-content-top span p {
+  color: #000;
+  opacity: 0.7;
+  font-weight: bold;
+}
+
+#filter-container .btn-container {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  left: 0px;
+}
+
+#filter-container .btn-container > div {
+  display: flex;
+}
+
+#filter-container .btn-container button {
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 20px;
+  border: none;
+  color: #fff;
+}
+
+#filter-container .btn-container > div button svg {
+}
+
+#filter-container .btn-container > div:first-of-type button {
+  background: #f953c6 !important;
+}
+
+#filter-container .btn-container > div > button {
+  background: #2c3e50;
+}
+
+#search .open > div {
+  bottom: 0px;
+}
