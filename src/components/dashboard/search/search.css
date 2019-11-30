@@ -12,6 +12,20 @@
   font-size: 18px;
 }
 
+#search .search-content-text h2{
+  color: #2c3e50;
+  opacity: 0.8;
+  font-size: 20px;
+  max-width: 200px;
+  margin-top: 40px;
+}
+
+#search .search-content-text p{
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+
 .input-container {
   display: flex;
   align-items: center;
@@ -58,8 +72,8 @@
   background: #fff;
   width: 100%;
   height: 100%;
-  left: 0px;
-  bottom: -100%;
+  top: 0px;
+  right: -100%;
   z-index: 10000;
   transition: all 0.2s ease-in-out;
 }
@@ -144,5 +158,5 @@
 }
 
 #search .open > div {
-  bottom: 0px;
+  right: 0px;
 }

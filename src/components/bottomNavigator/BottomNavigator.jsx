@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import {
   IoIosHome,
   IoIosSearch,
-  IoIosRocket,
-  IoIosOptions
+  IoIosSettings
 } from "react-icons/io";
 import "./bottomnavigator.css";
 
@@ -29,7 +28,7 @@ function BottomNavigator(props) {
     // },
     {
       id: 4,
-      icon: <IoIosOptions size="30" color="#f953c6" />,
+      icon: <IoIosSettings size="30" color="#f953c6" />,
       url: "profile"
     }
   ];

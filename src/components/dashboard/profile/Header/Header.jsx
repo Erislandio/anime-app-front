@@ -11,9 +11,8 @@ export default function Header(props) {
         <span className="user-img">
           <MdAddAPhoto size={50} />
           <ImageUploader
-            withIcon={true}
+            withIcon={false}
             buttonText="Choose images"
-            onChange={this.onDrop}
             imgExtension={[".jpg", ".png"]}
             maxFileSize={5242880}
           />

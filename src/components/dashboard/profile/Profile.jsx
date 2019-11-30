@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import Cookie from "js-cookie";
 import Header from "./Header/Header";
 import "./profile.css";
-import axios from "axios";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 
 export default class Profile extends Component {
   constructor(props) {
@@ -27,7 +28,11 @@ export default class Profile extends Component {
     const { user } = this.props;
 
     if (!user) {
-      return <h1>carregando...</h1>;
+      return (
+        <div id="loading">
+          <Loader type="TailSpin" color="#f953c6" height={50} width={50} />
+        </div>
+      );
     }
 
     return (

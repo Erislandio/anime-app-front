@@ -6,7 +6,7 @@ import Login from "./components/login/login";
 import LoginForm from "./components/login/LoginForm";
 import Register from "./components/register/Register";
 import Cookie from "js-cookie";
-import axios from 'axios'
+import axios from "axios";
 import {
   BrowserRouter as Router,
   Switch,
@@ -19,14 +19,24 @@ import Profile from "./components/dashboard/profile/Profile";
 import BottomNavigator from "./components/bottomNavigator/BottomNavigator";
 import client from "./client/client";
 
-function App() {
-  const idUser = Cookie.get("id");
-  const [user, setUser] = useState(null);
-  useEffect(() => {
+export class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      idUser: Cookie.get("id"),
+      user: null
+    };
+  }
+
+  async componentDidMount() {
     const userId = Cookie.get("user");
+
+    const { idUser, user } = this.state;
+
     if (idUser && user == null) {
       try {
-        client({
+        const { data } = await client({
           method: "POST",
           url: "/user/find",
           data: {
@@ -36,9 +46,9 @@ function App() {
             "Content-Type": "application/json",
             Authorization: `Bearer ${idUser}`
           }
-        }).then(res => {
-          setUser(res.data);
         });
+
+        this.setState({ user: data });
       } catch (error) {
         client({
           method: "POST",
@@ -51,48 +61,51 @@ function App() {
             Authorization: `Bearer ${idUser}`
           }
         }).then(res => {
-          setUser(res.data);
-
+          this.setState({ user: res.data });
           axios
             .get(`https://viacep.com.br/ws/${res.data.user.zipcode}/json/`)
             .then(res => {
-              console.log(res, 'res');
+              console.log(res, "res");
             });
         });
       }
     }
-  }, []);
+  }
 
-  return (
-    <Router>
-      {idUser ? (
-        <Redirect to={{ pathname: "/home" }} />
-      ) : (
-        <Redirect to={{ pathname: "/initial" }} />
-      )}
-      <Switch>
-        <Route path="/initial">
-          <Login />
-        </Route>
-        <Route path="/login">
-          <LoginForm />
-        </Route>
-        <Route path="/register">
-          <Register />
-        </Route>
-        <Route path="/search">
-          <Search />
-        </Route>
-        <Route path="/home">
-          <Home />
-        </Route>
-        <Route path="/profile">
-          <Profile user={user} />
-        </Route>
-      </Switch>
-      {user || idUser ? <BottomNavigator /> : null}
-    </Router>
-  );
+  render() {
+    const { idUser, user } = this.state;
+
+    return (
+      <Router>
+        {idUser ? (
+          <Redirect to={{ pathname: "/home" }} />
+        ) : (
+          <Redirect to={{ pathname: "/initial" }} />
+        )}
+        <Switch>
+          <Route path="/initial">
+            <Login />
+          </Route>
+          <Route path="/login">
+            <LoginForm />
+          </Route>
+          <Route path="/register">
+            <Register />
+          </Route>
+          <Route path="/search">
+            <Search />
+          </Route>
+          <Route path="/home">
+            <Home />
+          </Route>
+          <Route path="/profile">
+            <Profile user={user} />
+          </Route>
+        </Switch>
+        {user || idUser ? <BottomNavigator /> : null}
+      </Router>
+    );
+  }
 }
 
 ReactDOM.render(<App />, document.getElementById("root"));
