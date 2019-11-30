@@ -10,12 +10,6 @@ export default function Header(props) {
       <div>
         <span className="user-img">
           <MdAddAPhoto size={50} />
-          <ImageUploader
-            withIcon={false}
-            buttonText="Choose images"
-            imgExtension={[".jpg", ".png"]}
-            maxFileSize={5242880}
-          />
         </span>
         <span className="user-name">
           <h3>{user.name}</h3>

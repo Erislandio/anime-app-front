@@ -12,7 +12,7 @@
   font-size: 18px;
 }
 
-#search .search-content-text h2{
+#search .search-content-text h2 {
   color: #2c3e50;
   opacity: 0.8;
   font-size: 20px;
@@ -20,11 +20,10 @@
   margin-top: 40px;
 }
 
-#search .search-content-text p{
+#search .search-content-text p {
   margin-top: 10px;
   font-size: 14px;
 }
-
 
 .input-container {
   display: flex;
@@ -159,4 +158,50 @@
 
 #search .open > div {
   right: 0px;
+}
+
+#result-list .spot-search {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  border: 1px solid #dedede;
+  padding: 10px;
+  border-radius: 12px;
+}
+
+#result-list .card-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-left: 20px;
+}
+
+#result-list {
+  display: grid;
+  margin-top: 30px;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+#result-list .card-info .card-actions {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  max-width: 150px;
+  width: 100%;
+}
+
+#result-list .card-info .card-actions button {
+  width: 100%;
+  margin-top: 10px;
+  border: 0px;
+  padding: 10px;
+  border-radius: 15px;
+  background: #2980b9;
+}
+
+#result-list .card-info .card-actions button:last-of-type {
+  background: #27ae60;
 }

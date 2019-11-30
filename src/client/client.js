@@ -9,4 +9,11 @@ const client = axios.create({
   }
 });
 
-export default client;
+const jinkanApi = axios.create({
+  baseURL: "https://api.jikan.moe/v3",
+  headers: {
+    "Content-Type": "application/json"
+  }
+});
+
+export default { client, jinkanApi };

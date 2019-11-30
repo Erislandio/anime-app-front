@@ -3,5 +3,31 @@
 }
 
 #home .wellcome b {
+  margin-top: 10px;
+  display: block;
   text-transform: capitalize;
+}
+
+#home .wellcome h1 {
+  font-size: 20px;
+}
+
+#home .main {
+  margin-top: 50px;
+}
+
+#home .main h3 {
+  margin-bottom: 20px;
+  font-size: 25px;
+}
+
+.spot-anime {
+  max-width: 200px;
+  border-radius: 12px;
+  display: flex;
+}
+
+.spot-anime img {
+  border: 1px solid #dedede;
+  border-radius: 12px;
 }
