@@ -20,11 +20,13 @@ import Details from "./components/Details/Details";
 
 export class App extends React.Component {
   render() {
-    const user = JSON.parse(Cookie.get("user"));
+    const userJson = Cookie.get("user");
+    const user = userJson ? JSON.parse(userJson) : null;
     return (
       <Router>
         {user ? (
-          <Redirect to={{ pathname: "/home" }} />
+          // <Redirect to={{ pathname: "/home" }} />
+            <div></div>
         ) : (
           <Redirect to={{ pathname: "/initial" }} />
         )}

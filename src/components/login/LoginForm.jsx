@@ -45,7 +45,7 @@ class LoginForm extends Component {
 
     this.setState({ loading: true });
 
-    client({
+    client.client({
       method: "POST",
       url: "/login",
       data: {

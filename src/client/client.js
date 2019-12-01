@@ -12,7 +12,8 @@ const client = axios.create({
 const jinkanApi = axios.create({
   baseURL: "https://api.jikan.moe/v3/",
   headers: {
-    "Content-Type": "application/json"
+    "Content-Type": "application/json",
+
   }
 });
 

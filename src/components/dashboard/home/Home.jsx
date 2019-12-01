@@ -16,7 +16,7 @@ export class Home extends React.Component {
   componentDidMount() {
     client
       .jinkanApi({
-        url: "/anime/1/recommendations"
+        url: "/anime/20/recommendations"
       })
       .then(({ data }) => {
         this.setState({
@@ -30,7 +30,6 @@ export class Home extends React.Component {
 
   render() {
     const { user } = this.props;
-    const { recommendations } = this.state;
 
     if (!user) {
       return (
@@ -39,6 +38,8 @@ export class Home extends React.Component {
         </div>
       );
     }
+
+    const { recommendations } = this.state;
 
     const settings = {
       dots: false,
@@ -69,7 +70,7 @@ export class Home extends React.Component {
                   recommendations.map((rec, index) => {
                     return (
                       <div key={index} className="spot-anime">
-                        <img src={rec.image_url} width="200px" height="250px"/>
+                        <img src={rec.image_url} width="200px" height="250px" />
                       </div>
                     );
                   })}
@@ -77,6 +78,7 @@ export class Home extends React.Component {
             </div>
           </main>
         </div>
+
       </div>
     );
   }

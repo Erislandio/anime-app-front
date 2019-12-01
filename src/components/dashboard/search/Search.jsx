@@ -73,7 +73,7 @@ export default class Search extends Component {
                 type="text"
                 placeholder="Animes, Mangas e Cinemas..."
                 onChange={this.handleChange}
-                autoFocus
+                autoFocusin
               />
             </span>
             <div id="search-filter">

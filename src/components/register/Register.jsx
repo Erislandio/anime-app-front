@@ -83,13 +83,14 @@ class Register extends Component {
 
     this.setState({ loading: true });
 
-    client({
-      method: "POST",
-      url: "/register",
-      data: {
-        ...this.state
-      }
-    })
+    client
+      .client({
+        method: "POST",
+        url: "/register",
+        data: {
+          ...this.state
+        }
+      })
       .then(({ data }) => {
         if (data.error) {
           ToastsStore.error(data.error);
@@ -97,14 +98,15 @@ class Register extends Component {
         }
 
         if (data._id) {
-          client({
-            method: "POST",
-            url: "/login",
-            data: {
-              email,
-              password
-            }
-          })
+          client
+            .client({
+              method: "POST",
+              url: "/login",
+              data: {
+                email,
+                password
+              }
+            })
             .then(res => {
               const {
                 data: { token, user },
