@@ -4,6 +4,7 @@ import Loader from "react-loader-spinner";
 import "./home.css";
 import client from "../../../client/client";
 import Slider from "react-slick";
+import { Link } from "react-router-dom";
 
 export class Home extends React.Component {
   constructor(props) {
@@ -70,7 +71,13 @@ export class Home extends React.Component {
                   recommendations.map((rec, index) => {
                     return (
                       <div key={index} className="spot-anime">
-                        <img src={rec.image_url} width="200px" height="250px" />
+                        <Link to={{ pathname: `details/${rec.mal_id}` }}>
+                          <img
+                            src={rec.image_url}
+                            width="200px"
+                            height="250px"
+                          />
+                        </Link>
                       </div>
                     );
                   })}
@@ -78,7 +85,6 @@ export class Home extends React.Component {
             </div>
           </main>
         </div>
-
       </div>
     );
   }

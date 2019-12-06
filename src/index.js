@@ -22,11 +22,15 @@ export class App extends React.Component {
   render() {
     const userJson = Cookie.get("user");
     const user = userJson ? JSON.parse(userJson) : null;
+
+    const isDetailsPage = window.location.href.split("/")[3] === "details";
+    console.log(isDetailsPage);
+
     return (
       <Router>
         {user ? (
           // <Redirect to={{ pathname: "/home" }} />
-            <div></div>
+          <div></div>
         ) : (
           <Redirect to={{ pathname: "/initial" }} />
         )}
@@ -49,11 +53,14 @@ export class App extends React.Component {
           <Route path="/profile">
             <Profile user={user} />
           </Route>
+        </Switch>
+        {user ? <BottomNavigator /> : null}
+
+        <Switch>
           <Route path="/details/:id">
             <Details />
           </Route>
         </Switch>
-        {user ? <BottomNavigator /> : null}
       </Router>
     );
   }

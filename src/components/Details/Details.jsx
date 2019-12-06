@@ -3,20 +3,17 @@ import Loader from "react-loader-spinner";
 import jikanjs from "jikanjs";
 import {
   IoIosArrowRoundBack,
-  IoMdMore,
-  IoMdThumbsUp,
-  IoMdTrophy,
-  IoMdImages,
-  IoMdContacts,
-  IoIosThumbsDown,
-  IoIosThumbsUp
+  IoIosThumbsUp,
+  IoMdShare,
+  IoIosThumbsDown
 } from "react-icons/io";
 import { MdFavoriteBorder } from "react-icons/md";
-import { FaStar, FaDesktop, FaCrown, FaComments } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import ReactStoreIndicator from "react-score-indicator";
 import "./details.css";
 import Modal from "react-modal";
+import { AnimeSpecifications } from "./AnimeSpecifications";
+import { ShareContent } from "./ShareContent";
 
 export default class Details extends React.Component {
   constructor(props) {
@@ -82,8 +79,8 @@ export default class Details extends React.Component {
               </Link>
               <h2>{anime.title}</h2>
               <MdFavoriteBorder size={30} color="#f953c6" opacity={0.7} />
-              <IoMdMore
-                size={30}
+              <IoMdShare
+                size={25}
                 color="#fff"
                 opacity={1}
                 onClick={this.openModal}
@@ -102,32 +99,7 @@ export default class Details extends React.Component {
               />
             </div>
 
-            <div className="mosaic-info">
-              <div className="episodes">
-                Episódios <FaDesktop size={20} color="#9b59b6" />
-                <span>{anime.episodes}</span>
-              </div>
-              <div className="rank">
-                Rank <FaCrown size={20} color="#ffb229" />
-                <span>{anime.rank}°</span>
-              </div>
-              <div className="popularity">
-                Popularidade <IoMdTrophy size={20} color="#ffb229" />
-                <span> {anime.popularity}° </span>
-              </div>
-              <div className="likes">
-                Likes <IoMdThumbsUp size={20} color="#3498db" />
-                <span> {anime.favorites} </span>
-              </div>
-              <div className="genre">
-                Genero <IoMdImages size={20} color="#1abc9c" />
-                <span> {anime.genres[0].name} </span>
-              </div>
-              <div className="genre">
-                Membros <IoMdContacts size={20} color="#34495e" />
-                <span> {anime.members} </span>
-              </div>
-            </div>
+            <AnimeSpecifications anime={anime} />
 
             <div className="avaliacao">
               <div>
@@ -139,14 +111,6 @@ export default class Details extends React.Component {
                     width={100}
                   />
                 </div>
-                <div className="rating-content">
-                  <button>
-                    <IoIosThumbsUp color="#2ecc71" size={30} />
-                  </button>
-                  <button>
-                    <IoIosThumbsDown color="#c0392b" size={30} opacity={0.6} />
-                  </button>
-                </div>
               </div>
             </div>
 
@@ -154,22 +118,26 @@ export default class Details extends React.Component {
               <div>
                 <h3>Descrição </h3>
                 <div className="image-descrption">
-                  <img src={anime.image_url} />
+                  <img src={anime.image_url} alt={anime.title} />
                   <p>{anime.synopsis}</p>
                 </div>
 
-                <h3 style={{ marginTop: "15px" }}>Produtoras</h3>
-                <span className="produtoras">
-                  {anime.producers.map(prod => {
-                    return (
-                      <a href={prod.url} key={prod.url}>
-                        <span>
-                          <h5>{prod.name}</h5>
-                        </span>
-                      </a>
-                    );
-                  })}
-                </span>
+                {anime.producers.length ? (
+                  <>
+                    <h3 style={{ marginTop: "15px" }}>Produtoras</h3>
+                    <span className="produtoras">
+                      {anime.producers.map(prod => {
+                        return (
+                          <a href={prod.url} key={prod.url}>
+                            <span>
+                              <h5>{prod.name}</h5>
+                            </span>
+                          </a>
+                        );
+                      })}
+                    </span>
+                  </>
+                ) : null}
               </div>
             </div>
           </main>
@@ -180,7 +148,7 @@ export default class Details extends React.Component {
           style={customStyles}
           contentLabel="Opções"
         >
-          <h3></h3>
+          <ShareContent anime={anime} />
         </Modal>
       </div>
     );

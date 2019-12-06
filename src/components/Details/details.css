@@ -17,7 +17,12 @@
 
 .main-details-top .top-info h2 {
   color: #fff;
-  font-size: 20px;
+  font-size: 18px;
+  text-align: left;
+  margin-left: 15px;
+  overflow: hidden;
+  max-width: 200px;
+  width: 200px;
 }
 
 .description {
@@ -108,6 +113,8 @@
   max-width: 140px;
   float: left;
   margin-right: 15px;
+  border: 1px solid #dedede;
+  border-radius: 12px;
 }
 
 .image-descrption p {
@@ -127,4 +134,23 @@
 
 .ReactModal__Overlay {
   background-color: rgba(0, 0, 0, 0.75) !important;
+}
+
+.share-content div {
+  display: flex;
+  align-items: center;
+  justify-content: initial;
+  text-align: left;
+  padding: 15px;
+}
+
+
+.share-content h4 {
+  text-align: left;
+  margin-left: 10px;
+}
+
+.ReactModal__Content {
+  text-align: center;
+  padding: 25px 50px !important;
 }

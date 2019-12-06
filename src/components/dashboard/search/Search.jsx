@@ -73,7 +73,7 @@ export default class Search extends Component {
                 type="text"
                 placeholder="Animes, Mangas e Cinemas..."
                 onChange={this.handleChange}
-                autoFocusin
+                autoFocus
               />
             </span>
             <div id="search-filter">
@@ -99,7 +99,13 @@ export default class Search extends Component {
                 return (
                   <div className="spot-search" key={anime.title}>
                     <Link
-                      to={{ pathname: `details/${anime.mal_id}` }}
+                      to={{
+                        pathname: `details/${anime.mal_id}`,
+                        params: anime,
+                        state: {
+                          anime
+                        }
+                      }}
                       params={{ anime }}
                     >
                       <img
