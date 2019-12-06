@@ -52,7 +52,6 @@ export class Home extends React.Component {
       centerPadding: 50
     };
 
-    console.log(this);
     return (
       <div id="home">
         <div className="wellcome">

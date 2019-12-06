@@ -69,8 +69,6 @@ export default class Search extends Component {
   render() {
     const { open, search, loadingData, init, text, anime } = this.state;
 
-    console.log(this);
-
     return (
       <div id="search">
         <div className="">

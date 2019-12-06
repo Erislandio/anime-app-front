@@ -24,7 +24,6 @@ export class App extends React.Component {
     const user = userJson ? JSON.parse(userJson) : null;
 
     const isDetailsPage = window.location.href.split("/")[3] === "details";
-    console.log(isDetailsPage);
 
     return (
       <Router>
