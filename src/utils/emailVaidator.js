@@ -1,6 +1,6 @@
 export const checkMail = mail => {
   var er = new RegExp(
-    /^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/
+    /^[A-Za-z0-9_\-.]+@[A-Za-z0-9_\-.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/
   );
   if (typeof mail == "string") {
     if (er.test(mail)) {

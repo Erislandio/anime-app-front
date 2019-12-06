@@ -5,7 +5,7 @@ import { FilterContainer } from "./FilterContainer";
 import client from "../../../client/client";
 import { MdDoNotDisturb } from "react-icons/md";
 import Loader from "react-loader-spinner";
-import { Link } from "react-router-dom";
+import Details from "../../Details/Details";
 
 export default class Search extends Component {
   constructor(props) {
@@ -16,7 +16,8 @@ export default class Search extends Component {
       search: [],
       init: false,
       loadingData: false,
-      text: ""
+      text: "",
+      anime: null
     };
 
     this.timeout = 0;
@@ -57,8 +58,16 @@ export default class Search extends Component {
     }
   };
 
+  handleClick = anime => {
+    this.setState({ anime });
+  };
+
+  handleClearAnime = () => {
+    this.setState({ anime: null });
+  };
+
   render() {
-    const { open, search, loadingData, init, text } = this.state;
+    const { open, search, loadingData, init, text, anime } = this.state;
 
     console.log(this);
 
@@ -86,7 +95,7 @@ export default class Search extends Component {
               </button>
             </div>
           </div>
-          {!init && text == "" ? (
+          {!init && text === "" ? (
             <div className="search-content-text">
               <h2>Explorar </h2>
               <p>Busque por tudo que imaginar, novos conteudos é aqui</p>
@@ -97,33 +106,26 @@ export default class Search extends Component {
             {search && !loadingData ? (
               search.map(anime => {
                 return (
-                  <div className="spot-search" key={anime.title}>
-                    <Link
-                      to={{
-                        pathname: `details/${anime.mal_id}`,
-                        params: anime,
-                        state: {
-                          anime
-                        }
-                      }}
-                      params={{ anime }}
-                    >
-                      <img
-                        src={anime.image_url}
-                        alt={anime.title}
-                        width="170px"
-                        height="200px"
-                      />
-                      <div className="card-info">
-                        <h4>{anime.title}</h4>
-                        <div className="card-details">
-                          <h4>
-                            {anime.episodes}{" "}
-                            {anime.episodes > 1 ? "Episódios" : "Episódio"}
-                          </h4>
-                        </div>
+                  <div
+                    className="spot-search"
+                    key={anime.title}
+                    onClick={() => this.handleClick(anime)}
+                  >
+                    <img
+                      src={anime.image_url}
+                      alt={anime.title}
+                      width="170px"
+                      height="200px"
+                    />
+                    <div className="card-info">
+                      <h4>{anime.title}</h4>
+                      <div className="card-details">
+                        <h4>
+                          {anime.episodes}{" "}
+                          {anime.episodes > 1 ? "Episódios" : "Episódio"}
+                        </h4>
                       </div>
-                    </Link>
+                    </div>
                   </div>
                 );
               })
@@ -145,6 +147,8 @@ export default class Search extends Component {
             <h4>Sem resultados para a pesquisa: {text}</h4>
           </div>
         ) : null}
+
+        {anime ? <Details id={anime.mal_id} close={this.handleClearAnime} /> : null}
       </div>
     );
   }

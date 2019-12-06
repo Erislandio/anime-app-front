@@ -1,6 +1,5 @@
 import React from "react";
 import { MdAddAPhoto } from "react-icons/md";
-import ImageUploader from "react-images-upload";
 
 export default function Header(props) {
   const { user } = props;

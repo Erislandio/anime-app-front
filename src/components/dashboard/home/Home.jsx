@@ -76,6 +76,7 @@ export class Home extends React.Component {
                             src={rec.image_url}
                             width="200px"
                             height="250px"
+                            alt={rec.title}
                           />
                         </Link>
                       </div>

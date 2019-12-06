@@ -24,7 +24,7 @@ export const ShareContent = ({ anime }) => {
       id: 1,
       title: "Whatsapp",
       content: (
-        <WhatsappShareButton url={window.location.href}>
+        <WhatsappShareButton url={`${window.location.origin}/details/${anime.mal_id}`}>
           <FaWhatsapp color="#25D366" size={30} />
           <h4>Whatsapp</h4>
         </WhatsappShareButton>
@@ -34,7 +34,7 @@ export const ShareContent = ({ anime }) => {
       id: 2,
       title: "Facebook",
       content: (
-        <FacebookShareButton url={window.location.href}>
+        <FacebookShareButton url={`${window.location.origin}/details/${anime.mal_id}`}>
           <FaFacebookSquare color="#4267B2" size={30} />
           <h4>Facebook</h4>
         </FacebookShareButton>
@@ -44,7 +44,7 @@ export const ShareContent = ({ anime }) => {
       id: 3,
       title: "Twitter",
       content: (
-        <TwitterShareButton url={window.location.href}>
+        <TwitterShareButton url={`${window.location.origin}/details/${anime.mal_id}`}>
           <FaTwitter color="#1DA1F2" size={30} />
           <h4>Twitter</h4>
         </TwitterShareButton>
@@ -55,7 +55,7 @@ export const ShareContent = ({ anime }) => {
       title: "Pinterest",
       content: (
         <PinterestShareButton
-          url={window.location.href}
+          url={`${window.location.origin}/details/${anime.mal_id}`}
           media={anime.image_url}
         >
           <FaPinterestSquare color="#c8232c" size={30} />
@@ -67,7 +67,7 @@ export const ShareContent = ({ anime }) => {
       id: 5,
       title: "Telegram",
       content: (
-        <TelegramShareButton url={window.location.href}>
+        <TelegramShareButton url={`${window.location.origin}/details/${anime.mal_id}`}>
           <FaTelegramPlane color="#0088cc" size={30} />
           <h4>Telegram</h4>
         </TelegramShareButton>
@@ -77,7 +77,7 @@ export const ShareContent = ({ anime }) => {
       id: 6,
       title: "Email",
       content: (
-        <EmailShareButton url={window.location.href}>
+        <EmailShareButton url={`${window.location.origin}/details/${anime.mal_id}`}>
           <FaMailBulk color="#34495e" size={30} />
           <h4>Email</h4>
         </EmailShareButton>

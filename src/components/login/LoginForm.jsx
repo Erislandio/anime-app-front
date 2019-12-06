@@ -34,7 +34,6 @@ class LoginForm extends Component {
   };
 
   handleSubmitForm = e => {
-    const { history } = this.props;
     const { email, password } = this.state;
     e.preventDefault();
 

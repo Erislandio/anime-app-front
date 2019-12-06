@@ -1,14 +1,8 @@
 import React from "react";
 import Loader from "react-loader-spinner";
 import jikanjs from "jikanjs";
-import {
-  IoIosArrowRoundBack,
-  IoIosThumbsUp,
-  IoMdShare,
-  IoIosThumbsDown
-} from "react-icons/io";
+import { IoIosArrowRoundBack, IoMdShare } from "react-icons/io";
 import { MdFavoriteBorder } from "react-icons/md";
-import { Link } from "react-router-dom";
 import ReactStoreIndicator from "react-score-indicator";
 import "./details.css";
 import Modal from "react-modal";
@@ -21,19 +15,16 @@ export default class Details extends React.Component {
     this.state = {
       loading: true,
       anime: null,
-      modalIsOpen: false
+      modalIsOpen: false,
+      openModalImage: false
     };
-
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
   }
 
   componentDidMount() {
-    const id = window.location.href.split("/").pop();
+    const { id } = this.props;
+    const isId = id ? id : window.location.href.split("/").pop();
 
-    console.log(id);
-
-    jikanjs.loadAnime(id).then(anime => {
+    jikanjs.loadAnime(isId).then(anime => {
       this.setState({
         loading: false,
         anime
@@ -41,18 +32,21 @@ export default class Details extends React.Component {
     });
   }
 
-  openModal() {
+  openModal = () => {
     this.setState({ modalIsOpen: true });
-  }
+  };
 
-  closeModal() {
-    this.setState({ modalIsOpen: false });
-  }
+  closeModal = () => {
+    this.setState({ modalIsOpen: false, openModalImage: false });
+  };
+
+  openModalImage = () => {
+    this.setState({ openModalImage: true });
+  };
 
   render() {
-    const { loading, anime } = this.state;
-    console.log(this);
-
+    const { loading, anime, openModalImage, modalIsOpen } = this.state;
+    const { close } = this.props;
     const customStyles = {
       content: {
         top: "50%",
@@ -74,9 +68,9 @@ export default class Details extends React.Component {
         ) : (
           <main className="main-details-top">
             <div className="top-info">
-              <Link to="/search" className="">
-                <IoIosArrowRoundBack size={35} color="#fff" />
-              </Link>
+              <span>
+                <IoIosArrowRoundBack size={35} color="#fff" onClick={close} />
+              </span>
               <h2>{anime.title}</h2>
               <MdFavoriteBorder size={30} color="#f953c6" opacity={0.7} />
               <IoMdShare
@@ -96,6 +90,7 @@ export default class Details extends React.Component {
                   margin: 0,
                   border: 0
                 }}
+                title={anime.title}
               />
             </div>
 
@@ -118,7 +113,11 @@ export default class Details extends React.Component {
               <div>
                 <h3>Descrição </h3>
                 <div className="image-descrption">
-                  <img src={anime.image_url} alt={anime.title} />
+                  <img
+                    src={anime.image_url}
+                    alt={anime.title}
+                    onClick={() => this.openModalImage()}
+                  />
                   <p>{anime.synopsis}</p>
                 </div>
 
@@ -140,15 +139,30 @@ export default class Details extends React.Component {
                 ) : null}
               </div>
             </div>
+            <div id="btn-view">
+              <div>
+                <button>Já vi</button>
+                <button>Quero ver</button>
+              </div>
+            </div>
           </main>
         )}
         <Modal
-          isOpen={this.state.modalIsOpen}
+          isOpen={modalIsOpen}
           onRequestClose={this.closeModal}
           style={customStyles}
           contentLabel="Opções"
         >
           <ShareContent anime={anime} />
+        </Modal>
+        <Modal
+          id="modal-image"
+          isOpen={openModalImage}
+          onRequestClose={this.closeModal}
+          style={customStyles}
+          contentLabel="Opções"
+        >
+          {anime && <img src={anime.image_url} alt={anime.title} />}
         </Modal>
       </div>
     );

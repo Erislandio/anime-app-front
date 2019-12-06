@@ -76,7 +76,7 @@ class Register extends Component {
       return;
     }
 
-    if (password != confirmPass) {
+    if (password !== confirmPass) {
       ToastsStore.error("As senhas estão diferentes");
       return;
     }
@@ -111,7 +111,6 @@ class Register extends Component {
               const {
                 data: { token, user },
                 data,
-                status
               } = res;
 
               if (token) {
@@ -176,12 +175,10 @@ class Register extends Component {
       email,
       password,
       loading,
-      error,
       name,
       tel,
       birth,
       zipcode,
-      genre,
       confirmPass,
       theposition
     } = this.state;
@@ -300,7 +297,7 @@ class Register extends Component {
             <div
               className="login-btn-content"
               disabledbutton={disabledButton.toString()}
-              showbutton={theposition == 1 ? "show" : "not-show"}
+              showbutton={theposition === 1 ? "show" : "not-show"}
             >
               <button
                 type="submit"
