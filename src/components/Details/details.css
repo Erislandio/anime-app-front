@@ -119,9 +119,10 @@
   max-width: 140px;
   float: left;
   margin-right: 15px;
-  margin-bottom: 14px;
+  margin-bottom: 8px;
   border: 1px solid #dedede;
-  border-radius: 12px;
+  border-radius: 5px;
+  margin-top: 10px;
 }
 
 .image-descrption p {
