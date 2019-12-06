@@ -8,6 +8,7 @@ import "./details.css";
 import Modal from "react-modal";
 import { AnimeSpecifications } from "./AnimeSpecifications";
 import { ShareContent } from "./ShareContent";
+import { Link } from "react-router-dom";
 
 export default class Details extends React.Component {
   constructor(props) {
@@ -46,7 +47,7 @@ export default class Details extends React.Component {
 
   render() {
     const { loading, anime, openModalImage, modalIsOpen } = this.state;
-    const { close } = this.props;
+    const { close, id } = this.props;
     const customStyles = {
       content: {
         top: "50%",
@@ -68,9 +69,15 @@ export default class Details extends React.Component {
         ) : (
           <main className="main-details-top">
             <div className="top-info">
-              <span>
-                <IoIosArrowRoundBack size={35} color="#fff" onClick={close} />
-              </span>
+              {id ? (
+                <span>
+                  <IoIosArrowRoundBack size={35} color="#fff" onClick={close} />
+                </span>
+              ) : (
+                <Link to={{ pathname: "/home" }}>
+                  <IoIosArrowRoundBack size={35} color="#fff" onClick={close} />
+                </Link>
+              )}
               <h2>{anime.title}</h2>
               <MdFavoriteBorder size={30} color="#f953c6" opacity={0.7} />
               <IoMdShare
