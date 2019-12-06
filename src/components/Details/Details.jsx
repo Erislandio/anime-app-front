@@ -2,7 +2,7 @@ import React from "react";
 import Loader from "react-loader-spinner";
 import jikanjs from "jikanjs";
 import { IoIosArrowRoundBack, IoMdShare } from "react-icons/io";
-import { MdFavoriteBorder } from "react-icons/md";
+import { MdFavoriteBorder, MdDoNotDisturb } from "react-icons/md";
 import ReactStoreIndicator from "react-score-indicator";
 import "./details.css";
 import Modal from "react-modal";
@@ -89,16 +89,23 @@ export default class Details extends React.Component {
             </div>
 
             <div className="iframe-trailer">
-              <iframe
-                src={anime.trailer_url}
-                style={{
-                  width: "100%",
-                  minHeight: "200px",
-                  margin: 0,
-                  border: 0
-                }}
-                title={anime.title}
-              />
+              {anime.trailer_url ? (
+                <iframe
+                  src={anime.trailer_url}
+                  style={{
+                    width: "100%",
+                    minHeight: "200px",
+                    margin: 0,
+                    border: 0
+                  }}
+                  title={anime.title}
+                />
+              ) : (
+                <div id="not-results" >
+                  <MdDoNotDisturb size={100} color="#f953c6" />
+                  <h4>Sem trailer :-(</h4>
+                </div>
+              )}
             </div>
 
             <AnimeSpecifications anime={anime} />
